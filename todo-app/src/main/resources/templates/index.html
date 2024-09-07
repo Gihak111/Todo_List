@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>To Do List</h1>
+
+    <!-- 작업 목록을 보여주는 테이블 -->
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 작업 데이터를 반복하여 출력 -->
+            <tr th:each="task : ${tasks}">
+                <td th:text="${task.title}"></td>
+                <td th:text="${task.description}"></td>
+                <td th:text="${task.completed}"></td>
+                <td th:text="${task.category}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 새 작업을 추가하는 폼 -->
+    <form th:action="@{/tasks}" method="post">
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="checkbox" name="completed"> Completed
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
